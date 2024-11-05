@@ -82,50 +82,52 @@ function Workouts() {
         <div className="container mt-4 ">
             <h2 className="text-center mb-4">Your Workouts</h2>
             {isLoggedIn ? (
-    <>
-        <Button variant="primary" onClick={handleAddWorkout} className="custom-button mb-3">
-            Add Workout
-        </Button>
-        <Row>
-            {workouts.length > 0 ? (
-                workouts.map((workout) => (
-                    <Col md={4} key={workout._id} className="mb-3">
-                        <Card className="shadow-sm rounded workout-card">
-                            <Card.Body>
-                                <Card.Title>{workout.name}</Card.Title>
-                                <Card.Text>
-                                    <strong>Duration:</strong> {workout.duration}
-                                </Card.Text>
-                                <Card.Text>
-                                    <strong>Status:</strong> {workout.status}
-                                </Card.Text>
-                                <div className="d-flex justify-content-between">
-                                    <Button className="custom-button" onClick={() => handleEditWorkout(workout)}>
-                                        Edit Workout
-                                    </Button>
-                                    <Button className="custom-button" onClick={() => handleDeleteWorkout(workout._id)}>
-                                        Delete Workout
-                                    </Button>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </Col>
-                ))
+                <>
+                    <div className="d-flex justify-content-center mb-3">
+                        <Button variant="primary" onClick={handleAddWorkout} className="custom-button">
+                            Add Workout
+                        </Button>
+                    </div>
+                    <Row>
+                        {Array.isArray(workouts) && workouts.length > 0 ? (
+                            workouts.map((workout) => (
+                                <Col md={4} key={workout._id} className="mb-3">
+                                    <Card className="shadow-sm rounded workout-card">
+                                        <Card.Body>
+                                            <Card.Title>{workout.name}</Card.Title>
+                                            <Card.Text>
+                                                <strong>Duration:</strong> {workout.duration}
+                                            </Card.Text>
+                                            <Card.Text>
+                                                <strong>Status:</strong> {workout.status}
+                                            </Card.Text>
+                                            <div className="d-flex justify-content-between">
+                                                <Button className="custom-button" onClick={() => handleEditWorkout(workout)}>
+                                                    Edit Workout
+                                                </Button>
+                                                <Button className="custom-button" onClick={() => handleDeleteWorkout(workout._id)}>
+                                                    Delete Workout
+                                                </Button>
+                                            </div>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            ))
+                        ) : (
+                            <Col className="text-center">
+                                <p>No workouts available. Please add some workouts.</p>
+                            </Col>
+                        )}
+                    </Row>
+                </>
             ) : (
-                <Col className="text-center">
-                    <p>No workouts available. Please add some workouts.</p>
-                </Col>
+                <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: 'calc(100vh - 200px)', textAlign: 'center' }}>
+                    <p>Please log in to view your workouts.</p>
+                    <Button className="custom-button" onClick={() => navigate('/login')}>
+                        Go to Login
+                    </Button>
+                </div>
             )}
-        </Row>
-    </>
-) : (
-    <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: 'calc(100vh - 200px)', textAlign: 'center' }}>
-        <p>Please log in to view your workouts.</p>
-        <Button className="custom-button" onClick={() => navigate('/login')}>
-            Go to Login
-        </Button>
-    </div>
-)}
 
 
             {/* Add Workout Modal */}

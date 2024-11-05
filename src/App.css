@@ -44,16 +44,6 @@ body {
   background-size: cover;
 }
 
-.form-control {
-  background-color: rgba(255, 255, 255, 0.3); /* Light transparent background */
-  color: white; /* Text color for readability */
-  border: 1px solid rgba(255, 255, 255, 0.5); /* Light border for input */
-}
-
-.form-control::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
 button {
   background-color: #f0ad4e; 
   color: black;
